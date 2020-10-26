@@ -17,8 +17,10 @@ $(function () {
       done: true,
     },
   ];
+
   load();
   function load() {
+    $('#todolist,#donelist').empty();
     $.each(list, function (i, item) {
       if (!item.done) {
         $(` <li>
@@ -37,4 +39,18 @@ $(function () {
       $('#donecount').text($('#donelist li').length);
     });
   }
+
+  $('#title').on('keyup', function (e) {
+    if (e.keyCode === 13) {
+      var val = $(this).val();
+      console.log(val);
+      $(this).val('');
+      var temp = {
+        content: val,
+        done: false,
+      };
+      list.unshift(temp);
+      load();
+    }
+  });
 });
