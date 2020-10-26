@@ -17,4 +17,20 @@ $(function () {
       done: true,
     },
   ];
+
+  $.each(list, function (i, item) {
+    if (!item.done) {
+      $(` <li>
+    <input type="checkbox" >
+    <p>${item.content}</p>
+    <a href="javascript:;"></a>
+  </li>`).appendTo($('#todolist'));
+    } else {
+      $(` <li>
+      <input type="checkbox" checked>
+      <p>${item.content}</p>
+      <a href="javascript:;"></a>
+    </li>`).appendTo($('#donelist'));
+    }
+  });
 });
