@@ -26,13 +26,13 @@ $(function () {
         $(` <li>
     <input type="checkbox" >
     <p>${item.content}</p>
-    <a href="javascript:;"></a>
+    <a href="javascript:;" index="${i}"></a>
   </li>`).appendTo($('#todolist'));
       } else {
         $(` <li>
       <input type="checkbox" checked>
       <p>${item.content}</p>
-      <a href="javascript:;"></a>
+      <a href="javascript:;" index="${i}"></a>
     </li>`).appendTo($('#donelist'));
       }
       $('#todocount').text($('#todolist li').length);
@@ -52,5 +52,11 @@ $(function () {
       list.unshift(temp);
       load();
     }
+  });
+
+  $('#todolist,#donelist').on('click', 'input', function () {
+    var index = $(this).siblings('a').attr('index');
+    list[index].done = !list[index].done;
+    load();
   });
 });
