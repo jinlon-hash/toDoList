@@ -59,4 +59,10 @@ $(function () {
     list[index].done = !list[index].done;
     load();
   });
+
+  $('#todolist,#donelist').on('click', 'a', function () {
+    var index = $(this).attr('index');
+    list.splice(index, 1);
+    load();
+  });
 });
