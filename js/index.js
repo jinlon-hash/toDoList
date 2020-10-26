@@ -17,20 +17,24 @@ $(function () {
       done: true,
     },
   ];
-
-  $.each(list, function (i, item) {
-    if (!item.done) {
-      $(` <li>
+  load();
+  function load() {
+    $.each(list, function (i, item) {
+      if (!item.done) {
+        $(` <li>
     <input type="checkbox" >
     <p>${item.content}</p>
     <a href="javascript:;"></a>
   </li>`).appendTo($('#todolist'));
-    } else {
-      $(` <li>
+      } else {
+        $(` <li>
       <input type="checkbox" checked>
       <p>${item.content}</p>
       <a href="javascript:;"></a>
     </li>`).appendTo($('#donelist'));
-    }
-  });
+      }
+      $('#todocount').text($('#todolist li').length);
+      $('#donecount').text($('#donelist li').length);
+    });
+  }
 });
